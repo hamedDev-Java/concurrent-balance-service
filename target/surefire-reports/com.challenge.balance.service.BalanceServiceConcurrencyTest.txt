@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+Test set: com.challenge.balance.service.BalanceServiceConcurrencyTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 9.021 s <<< FAILURE! -- in com.challenge.balance.service.BalanceServiceConcurrencyTest
+com.challenge.balance.service.BalanceServiceConcurrencyTest.concurrentDebits_preventNegativeBalance -- Time elapsed: 0.714 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 10
+ but was: 0
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at com.challenge.balance.service.BalanceServiceConcurrencyTest.concurrentDebits_preventNegativeBalance(BalanceServiceConcurrencyTest.java:76)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.challenge.balance.service.BalanceServiceConcurrencyTest.concurrentDuplicateRequests_idempotentExecution -- Time elapsed: 0.051 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 10
+ but was: 0
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at com.challenge.balance.service.BalanceServiceConcurrencyTest.concurrentDuplicateRequests_idempotentExecution(BalanceServiceConcurrencyTest.java:115)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.challenge.balance.service.BalanceServiceConcurrencyTest.bidirectionalTransfers_noDeadlock_totalSumPreserved -- Time elapsed: 0.053 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 100
+ but was: 0
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at com.challenge.balance.service.BalanceServiceConcurrencyTest.bidirectionalTransfers_noDeadlock_totalSumPreserved(BalanceServiceConcurrencyTest.java:174)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
