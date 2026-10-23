@@ -5,6 +5,8 @@ import com.challenge.balance.exception.BalanceException;
 import com.challenge.balance.exception.InsufficientFundsException;
 import com.challenge.balance.repository.AccountRepository;
 import com.challenge.balance.repository.TransactionRecordRepository;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -70,7 +72,7 @@ class BalanceServiceConcurrencyTest {
         }
 
         startLatch.countDown();
-      //  assertThat(doneLatch.await(10, TimeUnit.SECONDS)).isTrue();
+        assertThat(doneLatch.await(10, TimeUnit.SECONDS)).isTrue();
         executor.shutdown();
 
         assertThat(successCount.get()).isEqualTo(10);
@@ -108,7 +110,7 @@ class BalanceServiceConcurrencyTest {
         }
 
         startLatch.countDown();
-      //  assertThat(doneLatch.await(10, TimeUnit.SECONDS)).isTrue();
+        assertThat(doneLatch.await(10, TimeUnit.SECONDS)).isTrue();
         executor.shutdown();
 
         // All threads should succeed (either primary execution or idempotent replay)
@@ -168,7 +170,7 @@ class BalanceServiceConcurrencyTest {
 
         startLatch.countDown();
         // If deadlock occurs, this await will timeout and fail
-      //  assertThat(doneLatch.await(15, TimeUnit.SECONDS)).isTrue();
+        assertThat(doneLatch.await(15, TimeUnit.SECONDS)).isTrue();
         executor.shutdown();
 
         assertThat(successfulTransfers.get()).isEqualTo(totalThreads);
